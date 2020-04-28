@@ -263,6 +263,7 @@ async function generateReviews(asgmt) {
 
       while (studentRecord.assignedWork.length < breakLimit) {
         let work = shuffle.pick(workArray);
+        let workApproved;
         work, workApproved = await checkWorkAssignable(work, workArray, numReviewsPP, studentRecord);
 
         if (workApproved === true) {
