@@ -1,0 +1,138 @@
+/*-------------------------------------------*\
+   index.css
+
+   Index
+   - Element Tags
+   - Wrappers & Containers
+   - Buttons & Menus
+   - General
+   - @Media
+
+\*-------------------------------------------*/
+
+/*-------------------------------------------*\
+   Element Tags
+\*-------------------------------------------*/
+main {
+  margin-top: 0px!important;
+  height: 100vh;
+  width: 100vw;
+}
+
+/*-------------------------------------------*\
+   Wrappers & Containers
+\*-------------------------------------------*/
+.index-login-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+/*-------------------------------------------*\
+   Buttons & Menus
+\*-------------------------------------------*/
+.login-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 44px);
+  width: 100%;
+}
+
+/*-------------------------------------------*\
+   General
+\*-------------------------------------------*/
+.login-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 15px;
+  box-sizing: border-box;
+  height: 35vh;
+  width: 100%;
+  background-color: #1478fa;
+  border-radius: 0px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.login-box-header {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  width: 100%;
+}
+
+.login-box-header h1 {
+  position: relative;
+  left: -22px;
+  color: #fff;
+  font-size: 28px;
+  margin: 0px auto;
+  text-align: center;
+}
+
+/*-------------------------------------------*\
+   @Media
+\*-------------------------------------------*/
+@media (max-width: 575px) {
+  .login-box-header {
+    height: auto;
+    flex-direction: column;
+  }
+
+  .login-box-header h1 {
+    margin-top: 8px;
+    left: 0px;
+  }
+}
+
+@media (max-height: 568px) {
+  .login-box {
+    height: 40vh;
+  }
+
+  .login-box-header h1 {
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 576px) {
+  .login-box {
+    height: 30vh;
+    width: 80%;
+  }
+}
+
+@media (min-width: 768px) {
+  .login-box {
+    width: 55%;
+  }
+}
+
+@media (min-width: 992px) {
+  .login-box {
+    width: 45%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .login-box {
+    width: 35%;
+  }
+}
+
+@media (min-width: 1526px) {
+  .login-box {
+    width: 30%;
+  }
+}
+
+@media (min-width: 1884px) {
+  .login-box {
+    width: 25%;
+  }
+}

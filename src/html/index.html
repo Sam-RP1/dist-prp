@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Peer Review Portal</title>
+  <meta name="description" content="A peer review platform aiming to provide educational institutions with a comprehensive solution to enabling their students to learn through reviewing their peers work.">
+  <meta name="author" content="Samuel Renshaw-Panting">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="817782327399-fgs7camf3t9in6q6skjruu8769qt8igm.apps.googleusercontent.com">
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto|Source+Sans+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/fontawesome/css/all.css">
+
+  <link rel="stylesheet" type="text/css" href="styles/root.css">
+  <link rel="stylesheet" type="text/css" href="styles/index.css">
+</head>
+
+<body>
+
+  <main class="padding-default">
+
+    <section class="index-login-container">
+
+      <div class="login-box">
+
+        <section class="row login-box-header">
+          <div class="logo-wrapper-44">
+            <a href="/"><img class="logo" src="../assets/media/logo/p-white-bg.png" alt="Peer Review Portal"></img></a>
+          </div>
+          <h1>Peer Review Portal</h1>
+        </section>
+
+        <div class="login-btn">
+          <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Google Sign In -->
+  <script>
+  function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    var id_token = googleUser.getAuthResponse().id_token;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://peerreviewportal.co.uk/auth/login');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+      window.location.href = xhr.responseText;
+    };
+    xhr.send('idtoken=' + id_token);
+  };
+  </script>
+
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <!-- Load React -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+  <!-- Load React components -->
+</body>
+
+</html>

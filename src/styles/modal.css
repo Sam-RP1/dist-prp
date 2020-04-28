@@ -1,0 +1,323 @@
+/*-------------------------------------------*\
+   modal.css
+
+   Modal
+   - Wrappers & Containers
+   - Buttons & Menus
+   - Text
+   - General
+   - @Media
+
+\*-------------------------------------------*/
+
+/*-------------------------------------------*\
+   Wrappers & Containers
+\*-------------------------------------------*/
+.modal-container {
+  display: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+  padding: 0px;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1001;
+}
+
+.modal-wrapper {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  color: #000;
+  z-index: 1003;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.modal-btn-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.criterion-wrapper {
+  margin: 10px 0px 0px 0px;
+  width: 100%;
+}
+
+.collapsible-container {
+  height: auto;
+  width: 100%;
+}
+
+.class-details-container, .class-register-container {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 100%;
+  margin: 0px;
+}
+
+.student-details-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 100%;
+  margin: 0px 0px 15px 0px;
+}
+
+/*-------------------------------------------*\
+   Buttons & Menus
+\*-------------------------------------------*/
+.modal-btn {
+  height: 25px;
+  width: 40%;
+  margin: 10px 2% 3px 2%!important;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.modal-btn:hover {
+  border-top: 1px solid #a9a9a9!important;
+  border-right: 1px solid #a9a9a9!important;
+  border-left: 1px solid #a9a9a9!important;
+  border-bottom: 3px solid #1478fa!important;
+}
+
+.modal-back-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: auto;
+  width: 100%;
+}
+
+.modal-back-btn span {
+  cursor: pointer;
+}
+
+.collapsible-btn {
+  background-color: #4293fb;
+  color: #fff;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 18px;
+}
+
+.collapsible-active, .collapsible-btn:hover {
+  background-color: #1478fa;
+}
+
+.collapsible-btn:after {
+  content: '\02795'; /* Unicode character for "plus" sign (+) */
+  font-size: 13px;
+  color: #fff;
+  float: right;
+  margin-left: 5px;
+}
+
+.collapsible-active:after {
+  content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+/*-------------------------------------------*\
+   Text
+\*-------------------------------------------*/
+.modal-back-btn-txt {
+  display: inline-block;
+  font-family: 'Roboto', 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  margin: 0px 0px 0px 15px;
+}
+
+.modal-title {
+  margin: 15px 0px;
+  text-align: center;
+  font-size: 21px;
+  font-weight: 400;
+}
+
+.join-class form p, .create-class form p, .create-assignment form p {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 3px 0px 3px 0px;
+  font-size: 18px;
+  text-align: left;
+}
+
+.collapsible-txt {
+  padding: 0 18px;
+  background-color: #f1f1f1;
+  height: 0px;
+  margin-bottom: 2px;
+  overflow: hidden;
+  transition: height 0.2s ease-out;
+}
+
+.modal-msg {
+  display: none;
+  text-align: center;
+  margin: 0px 0px 10px 0px;
+  color: #f54646;
+}
+
+.class-details-container p {
+  font-size: 18px;
+  margin: 0px 0px 10px 0px;
+}
+
+.student-details-wrapper p {
+  font-size: 18px;
+  margin: 0px 0px 5px 0px
+}
+
+/*-------------------------------------------*\
+   General
+\*-------------------------------------------*/
+.overlay {
+  display: block;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: #222;
+  opacity: 0.4;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  z-index: 1002;
+  background-color: #fff;
+  border: 1px solid #444;
+  border-radius: 10px;
+}
+
+.modal form {
+  display: flex;
+  position: relative;
+  height: auto;
+  width: 100%;
+}
+
+.modal input, .modal textarea {
+  margin: 3px 0px 3px 0px;
+  font-size: 16px;
+  font-family: 'Roboto', 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  background-color: #fff;
+  border: 1px solid #a9a9a9;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.modal input:hover, .modal textarea:hover {
+  border-color: #5aa0fb;
+}
+
+.modal input::selection, .modal textarea::selection {
+  border-color: #1478fa;
+}
+
+.default-size, .join-class, .create-class, .create-assignment {
+  height: auto;
+  max-height: 95vh;
+  width: 100%;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+
+.reviews-modal {
+  height: auto;
+  max-height: 95vh;
+  width: 90vw;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+
+.submission {
+  height: 90vh;
+  width: 90vw;
+}
+
+.submission iframe {
+  height: 100%;
+  width: 100%;
+}
+
+.join-class form, .create-class form, .create-assignment form {
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-input-max, .modal-input-max-alt, .criterion, .criterionMarks {
+  height: 30px;
+  width: 100%;
+}
+
+.modal-input-description-box-alt, .criterionDescription {
+  height: 90px;
+  width: 100%;
+}
+
+/*-------------------------------------------*\
+   @Media
+\*-------------------------------------------*/
+@media (min-width: 576px) {
+  .join-class, .create-class {
+    width: 380px;
+  }
+}
+
+@media (min-width: 768px) {
+  .modal-input-max-alt, .modal-input-description-box-alt, .criterion, .criterionMarks, .criterionDescription {
+    width: 70%;
+  }
+
+  .default-size, .create-class, .create-assignment {
+    width: 500px;
+  }
+
+  .create-class form p, .create-assignment form p {
+    flex-direction: row;
+    white-space: nowrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .modal-btn-wrapper {
+    flex-direction: row;
+  }
+
+  .modal-title, .modal-back-btn-txt, .join-class form p, .create-class form p, .create-assignment form p {
+    font-size: 20px
+  }
+}
+
+@media (min-width: 992px) {
+  .create-assignment {
+    width: 700px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .join-class {
+    width: 400px;
+  }
+}

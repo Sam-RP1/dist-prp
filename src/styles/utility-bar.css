@@ -1,0 +1,338 @@
+/*-------------------------------------------*\
+   utility-bar.css
+
+   Utility Bar
+   - Wrappers & Containers
+   - Buttons & Menus
+   - Text
+   - General
+   - @Media
+
+\*-------------------------------------------*/
+
+/*-------------------------------------------*\
+   Wrappers & Containers
+\*-------------------------------------------*/
+.asgmt-btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  height: 37px;
+  min-width: 78%;
+  max-width: 78%;
+}
+
+/*-------------------------------------------*\
+   Buttons & Menus
+\*-------------------------------------------*/
+#assignment-btn,
+#submit-btn,
+#reviewpeers-btn,
+#feedback-btn,
+#details-btn,
+#metareview-btn,
+#results-btn,
+#cog-btn {
+  margin: 0px -1px 0px 0px!important;
+}
+
+#assignment-btn,
+#submit-btn,
+#reviewpeers-btn,
+#feedback-btn,
+#details-btn,
+#metareview-btn,
+#results-btn {
+  min-width: 100%;
+  max-width: 100%;
+}
+
+.utility-bar-btn, .asgmt-bar-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 10px;
+  min-height: 37px;
+  font-size: 20px;
+  color: #444;
+  background-color: #fff;
+  box-sizing: border-box;
+  border-left: 1px solid #444;
+  border-right: 1px solid #444;
+  border-top: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+  cursor: pointer;
+}
+
+.utility-bar-btn {
+  width: auto;
+}
+
+.utility-bar-btn:hover, .asgmt-bar-btn:hover {
+  border-bottom: 3px solid #1478fa;
+}
+
+.asgmt-active {
+  border-bottom: 3px solid #1478fa;
+}
+
+#asgmt-menu-btn {
+  display: block;
+  height: 100%;
+  width: 37px;
+  cursor: pointer;
+}
+
+#asgmt-btns {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 100%;
+  position: relative;
+  top: -250px;
+  transition-duration:.3s;
+  -ms-transition-duration:.3s;
+  -webkit-transition-duration:.3s;
+  -moz-transition-duration:.3s;
+}
+
+#bar-1, #bar-2, #bar-3 {
+  width: 36px;
+  height: 5px;
+  border-radius: 2px;
+  background-color: #000;
+  margin: 6px 0;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+}
+
+.change #bar-1 {
+  transform: rotate(-45deg) translate(-8px, 6px);
+  -webkit-transform: rotate(-45deg) translate(-8px, 6px);
+}
+
+.change #bar-2 {opacity: 0;}
+
+.change #bar-3 {
+  transform: rotate(45deg) translate(-9px, -8px);
+  -webkit-transform: rotate(45deg) translate(-9px, -8px);
+}
+
+.list-btn {
+  font-size: 30px;
+  color: #444;
+  margin: 0px!important;
+  cursor: pointer;
+}
+
+.grid-btn {
+  font-size: 26px;
+  color: #000;
+  cursor: pointer;
+}
+
+.utility-bar-back-btn {
+  display: flex;
+  position: fixed;
+  left: 15px;
+  flex-direction: row;
+  align-items: center;
+  height: auto;
+  min-width: 20%;
+  max-width: 20%;
+}
+
+.utility-bar-back-btn span {
+  cursor: pointer;
+}
+
+/*-------------------------------------------*\
+   Text
+\*-------------------------------------------*/
+#assignment-btn p,
+#submit-btn p,
+#reviewpeers-btn p,
+#feedback-btn p,
+#details-btn p,
+#metareview-btn p,
+#results-btn p {
+  margin: 0px!important;
+}
+
+.utility-bar-btn-txt, .asgmt-bar-btn-txt {
+  font-size: 18px;
+  margin: 0px 0px 0px 15px;
+}
+
+.asgmt-bar-btn-txt {
+  display: block;
+}
+
+.utility-bar-btn-txt {
+  display: none;
+}
+
+.utility-bar-back-btn-txt {
+  display: inline-block;
+  font-family: 'Roboto', 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  margin: 0px 0px 0px 10px;
+}
+
+/*-------------------------------------------*\
+   General
+\*-------------------------------------------*/
+#utility-bar {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 38px;
+  width: 100vw;
+  margin-top: 60px;
+  padding: 0px 15px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-bottom: 1px solid #444;
+  z-index: 99;
+}
+
+#utility-bar div {
+  margin: 0px 15px 0px 0px;
+}
+
+#assignment-bar {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 38px;
+  width: 100%;
+  margin-top: 60px;
+  padding: 0px 15px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-bottom: 1px solid #444;
+  z-index: 99;
+}
+
+/*-------------------------------------------*\
+   @Media
+\*-------------------------------------------*/
+@media (min-width: 576px) {
+  #utility-bar {
+    padding: 0px 30px;
+  }
+
+  #utility-bar div {
+    margin: 0px 30px 0px 0px;
+  }
+
+  .utility-bar-back-btn {
+    left: 30px;
+  }
+
+  .list-btn {
+    font-size: 34px;
+  }
+
+  .grid-btn {
+    font-size: 30px;
+  }
+}
+
+@media (min-width: 768px) {
+  .utility-bar-btn {
+    padding: 0px 15px;
+  }
+
+  .asgmt-bar-btn {
+    padding: 0px 5px;
+  }
+
+  .asgmt-bar-btn-txt {
+    font-size: 16px;
+  }
+
+  .utility-bar-btn-txt {
+    display: block;
+  }
+
+  #asgmt-menu-btn {
+    display: none;
+  }
+
+  .asgmt-btn-container {
+    min-width: 82%;
+    max-width: 82%;
+    flex-direction: row;
+  }
+
+  #asgmt-btns {
+    height: 37px;
+    top: 0px!important;
+    flex-direction: row;
+  }
+
+  #assignment-btn,
+  #submit-btn,
+  #reviewpeers-btn,
+  #feedback-btn,
+  #details-btn,
+  #metareview-btn,
+  #results-btn {
+    min-width: 25%;
+    max-width: 25%;
+  }
+}
+
+@media (min-width: 992px) {
+  #assignment-bar {
+    justify-content: center;
+  }
+
+  .asgmt-btn-container {
+    min-width: 75%;
+    max-width: 75%;
+  }
+
+  .asgmt-bar-btn-txt {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .asgmt-btn-container {
+    min-width: 65%;
+    max-width: 65%;
+  }
+
+  .asgmt-bar-btn {
+    padding: 0px 15px;
+  }
+}
+
+@media (min-width: 1526px) {
+  .asgmt-btn-container {
+    min-width: 50%;
+    max-width: 50%;
+  }
+}
+
+@media (min-width: 1884px) {
+  .asgmt-btn-container {
+    min-width: 40%;
+    max-width: 40%;
+  }
+}
+
+@media (min-width: 2160px) {
+  .asgmt-btn-container {
+    min-width: 35%;
+    max-width: 35%;
+  }
+}

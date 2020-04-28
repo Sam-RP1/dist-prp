@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Dashboard</title>
+  <meta name="author" content="Samuel Renshaw-Panting">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <meta name="google-signin-client_id" content="817782327399-fgs7camf3t9in6q6skjruu8769qt8igm.apps.googleusercontent.com">
+  <base href="../">
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto|Source+Sans+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/fontawesome/css/all.css">
+
+  <link rel="stylesheet" type="text/css" href="styles/root.css">
+  <link rel="stylesheet" type="text/css" href="styles/header.css">
+  <link rel="stylesheet" type="text/css" href="styles/utility-bar.css">
+  <link rel="stylesheet" type="text/css" href="styles/modal.css">
+  <link rel="stylesheet" type="text/css" href="styles/components.css">
+</head>
+
+<body id="body">
+
+  <section id="msg-container" class="padding-default transition-02"></section>
+
+  <header id="universal-header" class="padding-default"></header>
+
+  <section id="utility-bar"></section>
+
+  <main id="main" class="padding-default">
+    <section id="page-content" class="column"></section>
+  </main>
+
+  <section id="modal-container" class="modal-container"></section>
+
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <!-- Load React -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+
+  <!-- Load React components -->
+  <script src="components/header.js"></script>
+  <script src="components/utility-bar.js"></script>
+  <script src="components/modal.js"></script>
+  <script src="components/dashboard-cmpnt.js"></script>
+  <script src="scripts/dashboard.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+</body>
+</html>
