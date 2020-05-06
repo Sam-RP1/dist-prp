@@ -114,7 +114,7 @@ user.get('/classes', async function(req, res) {
   }
 });
 
-asgmt.get('/manual/view', async function(req, res) {
+user.get('/manual/view', async function(req, res) {
   try {
     res.sendFile(fileId, { root: path.join('./appdata/User-Manual-PRP.pdf', ) })
   } catch(e) {
