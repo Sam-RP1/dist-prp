@@ -157,7 +157,7 @@ class ClassGridLayout extends React.Component {
     }, React.createElement("div", {
       className: "default-btns-g"
     }, React.createElement("a", {
-      href: "https://localhost/main/assignment?classId=" + this.state.assignments[i].cl_id + "&className=" + this.state.class.name + "&asgmtId=" + this.state.assignments[i].id + "&asgmtName=" + this.state.assignments[i].title,
+      href: "https://peerreviewportal.co.uk/main/assignment?classId=" + this.state.assignments[i].cl_id + "&className=" + this.state.class.name + "&asgmtId=" + this.state.assignments[i].id + "&asgmtName=" + this.state.assignments[i].title,
       className: "cmpnt-btn-g-100"
     }, React.createElement("span", null, "Open")))))));
   }
@@ -197,7 +197,7 @@ class ClassListLayout extends React.Component {
     }, React.createElement("div", {
       className: "default-btns-l"
     }, React.createElement("a", {
-      href: "https://localhost/main/assignment?classId=" + this.state.assignments[i].cl_id + "&className=" + this.state.class.name + "&asgmtId=" + this.state.assignments[i].id + "&asgmtName=" + this.state.assignments[i].title,
+      href: "https://peerreviewportal.co.uk/main/assignment?classId=" + this.state.assignments[i].cl_id + "&className=" + this.state.class.name + "&asgmtId=" + this.state.assignments[i].id + "&asgmtName=" + this.state.assignments[i].title,
       className: "cmpnt-btn-l"
     }, React.createElement("span", null, React.createElement("p", null, "Open"))))))));
   }

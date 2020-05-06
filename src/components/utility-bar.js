@@ -108,7 +108,7 @@ function TeacherClassBar(props) {
     className: "fas fa-plus"
   }), React.createElement("p", {
     className: "utility-bar-btn-txt"
-  }, "Create an asssignment")), React.createElement(GridBtn, null), React.createElement(ListBtn, null));
+  }, "Create an assignment")), React.createElement(GridBtn, null), React.createElement(ListBtn, null));
 }
 
 ;

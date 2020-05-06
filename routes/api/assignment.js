@@ -336,8 +336,6 @@ asgmt.get('/assignment/view/:userId/:file', async function(req, res) {
   try {
     const userRequested = req.params.userId;
     const fileId = req.params.file;
-    console.log("hello")
-    console.log(userRequested)
     res.sendFile(fileId, { root: path.join('./appdata/users', userRequested) })
   } catch(e) {
     console.log(e);

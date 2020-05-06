@@ -898,14 +898,14 @@ function InfoModal(props) {
     onClick: () => toggleCollapsible("coll-1"),
     type: "button",
     className: "collapsible-btn transition-01"
-  }, "Open Collapsible"), React.createElement("div", {
+  }, "Peer Review Help Guide"), React.createElement("div", {
     className: "collapsible-txt"
   }, React.createElement("p", null, "Lorem ipsum example text here")), React.createElement("button", {
     id: "coll-2",
     onClick: () => toggleCollapsible("coll-2"),
     type: "button",
     className: "collapsible-btn transition-01"
-  }, "Another Collapsible"), React.createElement("div", {
+  }, "Website Help Guide"), React.createElement("div", {
     className: "collapsible-txt"
   }, React.createElement("p", null, "Lorem ipsum example text here. Hi there my dude.")))));
 }
