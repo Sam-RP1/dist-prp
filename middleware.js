@@ -215,8 +215,6 @@ module.exports.checkFile = async (req, res, next) => {
   }
 };
 
-// Submission and Review Time gates
-// compare current date time with set due datetime
 module.exports.acceptSubmission = async (req, res, next) => {
   try {
     const userId = req.session.userId;
@@ -226,8 +224,6 @@ module.exports.acceptSubmission = async (req, res, next) => {
     let asgmtSubmissionDue = await dbAsgmt.getAsgmtSubmissionDueTime(asgmtId);
     asgmtSubmissionDue = asgmtSubmissionDue.toString();
     const dueDeadline = Date.parse(asgmtSubmissionDue);
-
-    const test = 1682115311450
 
     if (today < dueDeadline) {
       next();
@@ -246,15 +242,15 @@ module.exports.acceptReview = async (req, res, next) => {
     const classId = req.params.classId;
     const asgmtId = req.params.asgmtId;
     const today = Date.now();
-    let getAsgmtReviewDue = await dbAsgmt.getAsgmtReviewDueTime(asgmtId);
-    getAsgmtReviewDue = getAsgmtReviewDue.toString();
-    const dueDeadline = Date.parse(getAsgmtReviewDue);
-
-    const test = 1682115311450
+    console.log(asgmtId)
+    let asgmtReviewDue = await dbAsgmt.getAsgmtReviewDueTime(asgmtId);
+    asgmtReviewDue = asgmtReviewDue.toString();
+    const dueDeadline = Date.parse(asgmtReviewDue);
 
     if (today < dueDeadline) {
       next();
     } else {
+      console.log("Cannot submit review")
       res.status(403).json({ status: 'fail', msg: 'The deadline for reviews has passed.' });
     }
   } catch(e) {

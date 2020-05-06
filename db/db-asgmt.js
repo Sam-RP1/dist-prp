@@ -70,7 +70,7 @@ module.exports.createAssignment = async (classId, data) => {
 
 /**
 * createReviews(asgmtId, reviewData, formData) -
-*
+* Creates the records for the reviews generated for an assignment
 * @param {string} asgmtId The assignments id
 * @param {JSON} reviewData
 * @param {JSON} formData
@@ -157,45 +157,92 @@ module.exports.getAssignment = async (asgmtId) => {
   return asgmt;
 };
 
-
+/**
+* getAssignmentFeedbackForm(asgmtId) -
+* Gets an assignments feedback form by querying the 'feedbackForms' table using the assignments id.
+* @param {string} asgmtId The assignments id
+* @return {JSON} The assignments feedback form
+*/
 module.exports.getAssignmentFeedbackForm = async (asgmtId) => {
   const sql = await config.sqlPromise;
   const [form] = await sql.query(sql.format('SELECT * FROM feedbackForms WHERE asgmt_id = ?', [asgmtId]));
   return form;
 };
 
-
+/**
+* getAssignmentCompletedReviews(asgmtId) -
+* Gets the reviews completed for an assignment by querying the 'reveiws' table using the assignments id.
+* @param {string} asgmtId The assignments id
+* @return {JSON} The reviews
+*/
 module.exports.getAssignmentCompletedReviews = async (asgmtId) => {
   const sql = await config.sqlPromise;
   const [reviews] = await sql.query(sql.format('SELECT * FROM reviews WHERE asgmt_id = ? AND completedReview = 1', [asgmtId]));
   return reviews;
 };
 
+/**
+* getUserReviews(userId, asgmtId) -
+* Gets a users reviews for an assignment by querying the 'reveiws' table using the assignments id and users id.
+* @param {string} userId The users id
+* @param {string} asgmtId The assignments id
+* @return {JSON} The reviews
+*/
 module.exports.getUserReviews = async (userId, asgmtId) => {
   const sql = await config.sqlPromise;
   const [reviews] = await sql.query(sql.format('SELECT * FROM reviews WHERE asgmt_id = ? AND reviewer_id = ?', [asgmtId, userId]));
   return reviews;
 };
 
+/**
+* getCompletedUserReviews(userId, asgmtId) -
+* Gets a users completed reviews for an assignment by querying the 'reveiws' table using the assignments id and users id.
+* @param {string} userId The users id
+* @param {string} asgmtId The assignments id
+* @return {JSON} The reviews
+*/
 module.exports.getCompletedUserReviews = async (userId, asgmtId) => {
   const sql = await config.sqlPromise;
   const [reviews] = await sql.query(sql.format('SELECT reviewer_id, submitor_id, submission_uri, criteriaNum, comments, marksGiven, marksMax, boundary FROM reviews WHERE asgmt_id = ? AND reviewer_id = ? AND completedReview = 1', [asgmtId, userId]));
   return reviews;
 };
 
+/**
+* getCompletedUserReviews(userId, asgmtId) -
+* Gets a users completed reviews for an assignment by querying the 'reveiws' table using the assignments id and users id.
+* @param {string} userId The users id
+* @param {string} asgmtId The assignments id
+* @return {JSON} The reviews
+*/
 module.exports.getCompletedReviewsForUser = async (userId, asgmtId) => {
   const sql = await config.sqlPromise;
   const [reviews] = await sql.query(sql.format('SELECT reviewer_id, submitor_id, submission_uri, criteriaNum, comments, marksGiven, marksMax, boundary FROM reviews WHERE asgmt_id = ? AND submitor_id = ? AND completedReview = 1', [asgmtId, userId]));
   return reviews;
 };
 
-
+/**
+* getReview(userId, asgmtId, submitorId) -
+* Gets a users review for an assignment by querying the 'reveiws' table using the assignments id and users id.
+* @param {string} userId The users id
+* @param {string} asgmtId The assignments id
+* @param {string} submitorId The user id for the works submitor id
+* @return {JSON} The reviews
+*/
 module.exports.getReview = async (userId, asgmtId, submitorId) => {
   const sql = await config.sqlPromise;
   const [reviews] = await sql.query(sql.format('SELECT * FROM reviews WHERE asgmt_id = ? AND reviewer_id = ? AND submitor_id = ?', [asgmtId, userId, submitorId]));
   return reviews;
 };
 
+/**
+* saveReview(userId, asgmtId, submitorId, data) -
+* Saves a review by a user.
+* @param {string} userId The users id
+* @param {string} asgmtId The assignments id
+* @param {string} submitorId The assignments id
+* @param {JSON} data The assignments id
+* @return {JSON} Status code
+*/
 module.exports.saveReview = async (userId, asgmtId, submitorId, data) => {
   try {
     const sql = await config.sqlPromise;
@@ -215,6 +262,15 @@ module.exports.saveReview = async (userId, asgmtId, submitorId, data) => {
   }
 };
 
+/**
+* submitReview(userId, asgmtId, submitorId, data) -
+* Submits a review by a user.
+* @param {string} userId The users id
+* @param {string} asgmtId The assignments id
+* @param {string} submitorId The assignments id
+* @param {JSON} data The assignments id
+* @return {JSON} Status code
+*/
 module.exports.submitReview = async (userId, asgmtId, submitorId, data) => {
   try {
     const sql = await config.sqlPromise;
@@ -236,21 +292,37 @@ module.exports.submitReview = async (userId, asgmtId, submitorId, data) => {
   }
 };
 
-
+/**
+* getUsersFeedback(userId, asgmtId) -
+* Gets a users feedback received from a completed review by querying the 'reveiws' table using the assignments id and users id.
+* @param {string} userId The users id
+* @param {string} asgmtId The assignments id
+* @return {JSON} The review feedback
+*/
 module.exports.getUsersFeedback = async (userId, asgmtId) => {
   const sql = await config.sqlPromise;
   const [reviews] = await sql.query(sql.format('SELECT * FROM reviews WHERE asgmt_id = ? AND submitor_id = ? AND completedReview = 1', [asgmtId, userId]));
   return reviews;
 };
 
-
+/**
+* getAsgmtSubmissionDueTime(asgmtId) -
+* Gets the submission deadline for work to be submitted by for an assingment by querying the 'assignments' table using the assignments id.
+* @param {string} asgmtId The assignments id
+* @return {DATE} The due date and time
+*/
 module.exports.getAsgmtSubmissionDueTime = async (asgmtId) => {
   const sql = await config.sqlPromise;
   const [asgmt] = await sql.query(sql.format('SELECT dueDateSubmissions FROM assignments WHERE id = ?', [asgmtId]));
   return asgmt[0].dueDateSubmissions;
 };
 
-
+/**
+* getAsgmtReviewDueTime(asgmtId) -
+* Gets the submission deadline for reviews to be submitted by for an assingment by querying the 'assignments' table using the assignments id.
+* @param {string} asgmtId The assignments id
+* @return {DATE} The due date and time
+*/
 module.exports.getAsgmtReviewDueTime = async (asgmtId) => {
   const sql = await config.sqlPromise;
   const [asgmt] = await sql.query(sql.format('SELECT dueDateReviews FROM assignments WHERE id = ?', [asgmtId]));
@@ -360,6 +432,13 @@ module.exports.getClassAsgmtDetails = async (classId, asgmtId) => {
   }
 };
 
+/**
+* getClassResults(classId, asgmtId) -
+* Gets the results for the class of an assignment.
+* @param {string} classId The classes id
+* @param {string} asgmtId The assignments id
+* @return {JSON} The  results
+*/
 module.exports.getClassResults = async (classId, asgmtId) => {
   try {
     const sql = await config.sqlPromise;
@@ -484,6 +563,13 @@ module.exports.getClassResults = async (classId, asgmtId) => {
   }
 };
 
+/**
+* getStudentResults(classId, asgmtId) -
+* Gets the results for students in an assignment.
+* @param {string} classId The classes id
+* @param {string} asgmtId The assignments id
+* @return {ARRAY} The students results
+*/
 module.exports.getStudentResults = async (classId, asgmtId) => {
   try {
     const sql = await config.sqlPromise;
@@ -533,7 +619,6 @@ module.exports.getStudentResults = async (classId, asgmtId) => {
     return { status: 'error', error: e };
   }
 };
-
 
 /**
 * checkAsgmtId(asgmtId) -

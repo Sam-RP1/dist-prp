@@ -32,8 +32,7 @@ login.post('/login', async function(req, res) {
       }
       const userCookie = await dbUser.getUserCookie(payload['sub']);
       req.session.userId = payload['sub']; // Set the users ID to their session
-      req.session.userTier = userRecord.tier
-      console.log(userCookie.data)
+      req.session.userTier = userRecord.tier;
       return res.status(200).cookie('prpUILayout', 0).cookie('prpUserCookie', userCookie.data).send("/main/dashboard");
     } else if (checkUserId.status === 'empty') { // 1. User account does not exist
       const postfix = payload['email'].split('@');
@@ -55,9 +54,7 @@ login.post('/login', async function(req, res) {
           })
           const userCookie = await dbUser.getUserCookie(payload['sub']);
           req.session.userId = payload['sub'];
-          req.session.userTier = 0;
-          console.log("NEW USER")
-          console.log(userCookie.data)
+          req.session.userTier = tier;
           return res.status(201).cookie('prpUILayout', 0).cookie('prpUserCookie', userCookie.data).send("/main/dashboard");
         } else {
           res.redirect(400, '/');

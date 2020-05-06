@@ -133,6 +133,12 @@ module.exports.getClassSize = async (classId) => {
   return result.length;
 };
 
+/**
+* getClassCreator(classId) -
+* Gets a classes creator.
+* @param {string} classId The classes id
+* @return {INT} The class creators id
+*/
 module.exports.getClassCreator = async (classId) => {
   const sql = await config.sqlPromise;
   const [classCreator] = await sql.query(sql.format('SELECT creator_id FROM classes WHERE id = ?', [classId]));
@@ -184,6 +190,12 @@ module.exports.getClassAssignments = async (classId) => {
   return result;
 };
 
+/**
+* getClassSubmissions(classId) -
+* Gets the submissions total for a class.
+* @param {string} classId The classes id
+* @return {JSON} The assignments
+*/
 module.exports.getClassSubmissions = async (classId) => {
   // Get all the assignments for a class
   // Then get all the submissions for each assignment in a class (USERID, [SUBMISSION URI'S])
@@ -280,11 +292,16 @@ module.exports.checkClassId = async (classId) => {
   }
 };
 
+/**
+* checkUserClassCreator(classId, userId) -
+* Checks if a user created the class using the ids provided.
+* @param {string} classId The classes id
+* @param {string} userId The users id
+* @return {JSON} A status code
+*/
 module.exports.checkUserClassCreator = async (classId, userId) => {
   const sql = await config.sqlPromise;
   const [classCreator] = await sql.query(sql.format('SELECT creator_id FROM classes WHERE id = ?', [classId]));
-  console.log("CREATOR")
-  console.log(classCreator[0].creator_id)
   if (classCreator[0].creator_id === userId) {
     return { status: 'exists' }
   } else {
@@ -302,9 +319,7 @@ module.exports.checkUserClassCreator = async (classId, userId) => {
 */
 module.exports.checkUserInClass = async (userId, userTier, classId) => {
   const sql = await config.sqlPromise;
-  console.log("This is checking a user is in a class.")
   if (userTier === 1) {
-    console.log("The user is a tier 1 user.")
     const [result] = await sql.query(sql.format('SELECT EXISTS(SELECT 1 FROM classes WHERE id = ? AND creator_id = ?) AS sysCheck', [classId, userId]));
     if (result[0].sysCheck === 1) {
       return { status: 'exists' }
@@ -312,7 +327,6 @@ module.exports.checkUserInClass = async (userId, userTier, classId) => {
       return { status: 'empty' }
     }
   } else {
-    console.log("The user is a tier 0 user.")
     const [result] = await sql.query(sql.format('SELECT EXISTS(SELECT 1 FROM registers WHERE cl_id = ? AND usr_id = ?) AS sysCheck', [classId, userId]));
     if (result[0].sysCheck === 1) {
       return { status: 'exists' }

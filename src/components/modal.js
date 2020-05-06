@@ -386,7 +386,8 @@ class CreateClassForm extends React.Component {
       onChange: this.changeHandler,
       placeholder: "Enter Unit Code Here",
       minLength: "4",
-      maxLength: "10"
+      maxLength: "10",
+      required: true
     })), React.createElement("input", {
       className: "modal-btn",
       type: "submit",
@@ -466,7 +467,7 @@ class JoinClassForm extends React.Component {
       name: "classCode",
       value: this.state.value,
       onChange: this.changeHandler,
-      placeholder: "Enter Class ID Here",
+      placeholder: "Enter Class Code Here",
       minLength: "8",
       maxLength: "8",
       required: true
@@ -931,7 +932,7 @@ function JoinClassModal(props) {
   }, React.createElement(ModalBackBtn, null), React.createElement("h2", {
     id: "modal-title",
     className: "modal-title"
-  }, "Join a new class by entering the ID you have been given below."), React.createElement("p", {
+  }, "Join a new class by entering the code you have been given below."), React.createElement("p", {
     id: "modal-msg",
     className: "modal-msg"
   }), React.createElement(JoinClassForm, null)));

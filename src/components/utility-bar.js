@@ -492,8 +492,7 @@ function closeReview() {
 
   document.getElementById('asgmt-box').style.display = "none";
   document.getElementById('reviewing-box').style.display = "none";
-} // ???
-
+}
 
 function AssignmentBar(props) {
   return React.createElement(React.Fragment, null, props.assignmentbtn, props.submitBtn, props.reviewsBtn, props.resultsBtn);

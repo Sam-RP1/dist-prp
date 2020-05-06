@@ -29,19 +29,19 @@ async function getAssignmentContents() {
     }, React.createElement("button", {
       type: "submit",
       className: "download-btn transition-01"
-    }, "File 1: ", asgmtData[0].fileOneName)), React.createElement("form", {
+    }, "File 1: ", asgmtData[0].fileOne.split('\\'))), React.createElement("form", {
       method: "GET",
       action: "/api/assignment/download/" + asgmtData[0].fileTwo
     }, React.createElement("button", {
       type: "submit",
       className: "download-btn transition-01"
-    }, "File 2: ", asgmtData[0].fileTwoName)), React.createElement("form", {
+    }, "File 2: ", asgmtData[0].fileTwo.split('\\'))), React.createElement("form", {
       method: "GET",
       action: "/api/assignment/download/" + asgmtData[0].fileThree
     }, React.createElement("button", {
       type: "submit",
       className: "download-btn transition-01"
-    }, "File 3: ", asgmtData[0].fileThreeName)));
+    }, "File 3: ", asgmtData[0].fileThree.split('\\'))));
   } else if (asgmtData[0].fileTwo !== null) {
     attachments = React.createElement("div", null, React.createElement("form", {
       method: "GET",
@@ -49,13 +49,13 @@ async function getAssignmentContents() {
     }, React.createElement("button", {
       type: "submit",
       className: "download-btn transition-01"
-    }, "File 1: ", asgmtData[0].fileOneName)), React.createElement("form", {
+    }, "File 1: ", asgmtData[0].fileOne.split('\\'))), React.createElement("form", {
       method: "GET",
       action: "/api/assignment/download/" + asgmtData[0].fileTwo
     }, React.createElement("button", {
       type: "submit",
       className: "download-btn transition-01"
-    }, "File 2: ", asgmtData[0].fileTwoName)));
+    }, "File 2: ", asgmtData[0].fileTwo.split('\\'))));
   } else if (asgmtData[0].fileOne !== null) {
     attachments = React.createElement("div", null, React.createElement("form", {
       method: "GET",
@@ -63,7 +63,7 @@ async function getAssignmentContents() {
     }, React.createElement("button", {
       type: "submit",
       className: "download-btn transition-01"
-    }, "File 1: ", asgmtData[0].fileOneName)));
+    }, "File 1: ", asgmtData[0].fileOne.split('\\'))));
   } else {
     attachments = "No files, please contact the teacher of this class.";
   }
@@ -88,7 +88,6 @@ async function getAssignmentContents() {
       cache: 'default'
     });
     const resultsData = await results.json();
-    console.log(resultsData);
     const content = React.createElement(AsgmtContentGenerator, {
       tier: uTier,
       title: asgmtData[0].title,
@@ -345,16 +344,12 @@ class ReviewingContainer extends React.Component {
     await this.setState({
       data
     });
-  } // only save changes make a comparison feature
-  // set to run every x seconds or make dupe function with not msg notification
-
+  }
 
   async saveHandler(event) {
-    event.preventDefault(); //const result = await this.validate(this.state); err check
-    //if (result === true) {
-
+    event.preventDefault();
     const urlParams = new URLSearchParams(window.location.search);
-    const response = await fetch('/api/assignment/review/save', {
+    const response = await fetch('/api/assignment/review/save/' + urlParams.get('classId') + '/' + urlParams.get('asgmtId'), {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -369,17 +364,13 @@ class ReviewingContainer extends React.Component {
       })
     });
     const data = await response.json();
-    renderMessage(data); //}
-  } // catch error for blank or missing inputs on submission but not save
-  // add checks to check for missing stuff
-
+    renderMessage(data);
+  }
 
   async submitHandler(event) {
-    event.preventDefault(); //const result = await this.validate(this.state); err check
-    //if (result === true) {
-
+    event.preventDefault();
     const urlParams = new URLSearchParams(window.location.search);
-    const response = await fetch('/api/assignment/review/submit', {
+    const response = await fetch('/api/assignment/review/submit/' + urlParams.get('classId') + '/' + urlParams.get('asgmtId'), {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -398,6 +389,7 @@ class ReviewingContainer extends React.Component {
 
     if (data.status === 'success') {
       ReactDOM.unmountComponentAtNode(document.getElementById('page-content'));
+      ReactDOM.unmountComponentAtNode(document.getElementById('review-criteria-container'));
       await getAssignmentContents();
 
       if (!document.getElementById('reviewpeers-btn')) {
@@ -405,8 +397,9 @@ class ReviewingContainer extends React.Component {
       } else {
         document.getElementById('reviewpeers-btn').click();
       }
-    } //}
 
+      document.getElementById('review-item').src = ' ';
+    }
   }
 
   render() {

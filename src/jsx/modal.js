@@ -360,7 +360,7 @@ class CreateClassForm extends React.Component {
       <input className="modal-input-max-alt" type="text" name="className" value={this.state.value} onChange={this.changeHandler} placeholder="Enter Class Name Here (Required)" minLength="4" maxLength="20" required />
       </p>
       <p>Unit Code:
-      <input className="modal-input-max-alt" type="text" name="unitCode" value={this.state.value} onChange={this.changeHandler} placeholder="Enter Unit Code Here" minLength="4" maxLength="10" />
+      <input className="modal-input-max-alt" type="text" name="unitCode" value={this.state.value} onChange={this.changeHandler} placeholder="Enter Unit Code Here" minLength="4" maxLength="10" required />
       </p>
       <input className="modal-btn" type="submit" value="Submit" />
       </form>
@@ -421,7 +421,7 @@ class JoinClassForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.submitHandler}>
-      <input className="modal-input-max" type="text" name="classCode" value={this.state.value} onChange={this.changeHandler} placeholder="Enter Class ID Here" minLength="8" maxLength="8" required />
+      <input className="modal-input-max" type="text" name="classCode" value={this.state.value} onChange={this.changeHandler} placeholder="Enter Class Code Here" minLength="8" maxLength="8" required />
       <input className="modal-btn" type="submit" value="Submit" />
       </form>
     );
@@ -663,11 +663,11 @@ function InfoModal(props) {
     <ModalBackBtn />
     <h2 id="modal-title" className="modal-title">Information & Help</h2>
     <div className="collapsible-container">
-    <button id="coll-1" onClick={() => toggleCollapsible("coll-1")} type="button" className="collapsible-btn transition-01">Open Collapsible</button>
+    <button id="coll-1" onClick={() => toggleCollapsible("coll-1")} type="button" className="collapsible-btn transition-01">Peer Review Help Guide</button>
     <div className="collapsible-txt">
     <p>Lorem ipsum example text here</p>
     </div>
-    <button id="coll-2" onClick={() => toggleCollapsible("coll-2")} type="button" className="collapsible-btn transition-01">Another Collapsible</button>
+    <button id="coll-2" onClick={() => toggleCollapsible("coll-2")} type="button" className="collapsible-btn transition-01">Website Help Guide</button>
     <div className="collapsible-txt">
     <p>Lorem ipsum example text here. Hi there my dude.</p>
     </div>
@@ -693,7 +693,7 @@ function JoinClassModal(props) {
     <React.Fragment>
     <div className="modal join-class padding-default">
     <ModalBackBtn />
-    <h2 id="modal-title" className="modal-title">Join a new class by entering the ID you have been given below.</h2>
+    <h2 id="modal-title" className="modal-title">Join a new class by entering the code you have been given below.</h2>
     <p id="modal-msg" className="modal-msg"></p>
     <JoinClassForm />
     </div>

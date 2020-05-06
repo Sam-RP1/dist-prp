@@ -94,7 +94,7 @@ function TeacherClassBar(props) {
     </div>
     <div onClick={props.modal2} id="plus-btn" className="utility-bar-btn">
     <span className="fas fa-plus"></span>
-    <p className="utility-bar-btn-txt">Create an asssignment</p>
+    <p className="utility-bar-btn-txt">Create an assignment</p>
     </div>
     <GridBtn />
     <ListBtn />
@@ -389,8 +389,6 @@ function closeReview() {
   document.getElementById('asgmt-box').style.display = "none";
   document.getElementById('reviewing-box').style.display = "none";
 }
-
-// ???
 function AssignmentBar(props) {
   return (
     <React.Fragment>

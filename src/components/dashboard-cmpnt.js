@@ -109,7 +109,7 @@ class DashboardGridLayout extends React.Component {
     }, React.createElement("div", {
       className: "default-btns-g"
     }, React.createElement("a", {
-      href: "https://peerreviewportal.co.uk/main/class?classId=" + this.state.classes[i].ref + "&className=" + this.state.classes[i].name,
+      href: "https://localhost/main/class?classId=" + this.state.classes[i].ref + "&className=" + this.state.classes[i].name,
       className: "cmpnt-btn-g"
     }, React.createElement("span", null, "Open Class")), React.createElement("span", {
       onClick: () => this.openAlternateBtns("altBtnsG-" + i),
@@ -186,7 +186,7 @@ class DashboardListLayout extends React.Component {
     }, React.createElement("div", {
       className: "default-btns-l"
     }, React.createElement("a", {
-      href: "https://peerreviewportal.co.uk/main/class?classId=" + this.state.classes[i].ref + "&className=" + this.state.classes[i].name,
+      href: "https://localhost/main/class?classId=" + this.state.classes[i].ref + "&className=" + this.state.classes[i].name,
       className: "cmpnt-btn-l"
     }, React.createElement("span", null, React.createElement("p", null, "Open Class"))), React.createElement("span", {
       onClick: () => this.openAlternateBtns("altBtnsL-" + i),

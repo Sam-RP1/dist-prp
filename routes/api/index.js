@@ -19,10 +19,10 @@ APIRouter.route('/assignment/reviews')
 APIRouter.route('/assignment/review')
   .get(require('./assignment.js'))
 
-APIRouter.route('/assignment/review/save')
+APIRouter.route('/assignment/review/save/:classId/:asgmtId')
   .put(require('./assignment.js'))
 
-APIRouter.route('/assignment/review/submit')
+APIRouter.route('/assignment/review/submit/:classId/:asgmtId')
   .put(require('./assignment.js'))
 
 APIRouter.route('/assignment/reviews/given')

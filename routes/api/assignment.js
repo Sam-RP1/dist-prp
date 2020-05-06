@@ -99,7 +99,6 @@ asgmt.post('/assignment', mw.checkUserTierOne, async function(req, res) {
   }
 });
 
-// add further checks if necessary
 asgmt.get('/assignment/reviews', async function(req, res) {
   try {
     const userId = req.session.userId;
@@ -171,9 +170,6 @@ asgmt.get('/assignment/review', async function(req, res) {
         })
       }
 
-      console.log("DONE")
-      console.log(reviewsPack)
-
       res.status(200).send(reviewsPack);
     } else {
       res.sendStatus(404);
@@ -184,9 +180,9 @@ asgmt.get('/assignment/review', async function(req, res) {
   }
 });
 
-asgmt.put('/assignment/review/save', async function(req, res) {
+asgmt.put('/assignment/review/save/:classId/:asgmtId', mw.acceptReview, async function(req, res) {
   try {
-    const userId = req.session.userId; //could cross reference with reviewerid
+    const userId = req.session.userId;
     const classId = req.body.classId;
     const asgmtId = req.body.asgmtId;
     const submitorId = req.body.submitorId;
@@ -204,8 +200,8 @@ asgmt.put('/assignment/review/save', async function(req, res) {
     res.status(500).json({ status: 'fail', msg: 'We are having trouble saving this review at the moment. Please try again later.' });
   }
 });
-// add middleware
-asgmt.put('/assignment/review/submit', async function(req, res) {
+
+asgmt.put('/assignment/review/submit/:classId/:asgmtId', mw.acceptReview, async function(req, res) {
   try {
     const userId = req.session.userId; //could cross reference with reviewerid
     const classId = req.body.classId;
@@ -281,7 +277,6 @@ asgmt.get('/assignment/feedback', async function(req, res) {
   }
 });
 
-// Add a check maybe for when the review phase has passed?
 asgmt.get('/assignment/results', mw.checkUserTierOne, mw.checkClassOwnership, async function(req, res) {
   try {
     const userId = req.session.userId;
@@ -296,7 +291,6 @@ asgmt.get('/assignment/results', mw.checkUserTierOne, mw.checkClassOwnership, as
     res.status(500).json({ status: 'fail', msg: 'We are having trouble getting the results at the moment. Please try again later.' });
   }
 });
-
 
 asgmt.get('/assignment/reviews/given', mw.checkUserTierOne, mw.checkClassOwnership, async function(req, res) {
   try {
@@ -338,14 +332,12 @@ asgmt.get('/assignment/reviews/recieved', mw.checkUserTierOne, mw.checkClassOwne
   }
 });
 
-
-/// NEED TO DO ///
-
-// add to check the file they are getting is in their class or their own OR that they are a tier 1 user.
 asgmt.get('/assignment/view/:userId/:file', async function(req, res) {
   try {
     const userRequested = req.params.userId;
     const fileId = req.params.file;
+    console.log("hello")
+    console.log(userRequested)
     res.sendFile(fileId, { root: path.join('./appdata/users', userRequested) })
   } catch(e) {
     console.log(e);
@@ -353,7 +345,6 @@ asgmt.get('/assignment/view/:userId/:file', async function(req, res) {
   }
 });
 
-// Good
 asgmt.get('/assignment/submission/status', async function(req, res) {
   try {
     const userId = req.session.userId;
@@ -373,7 +364,6 @@ asgmt.get('/assignment/submission/status', async function(req, res) {
     res.status(500).json({ status: 'fail', msg: 'We are having trouble checking the submission status at the moment. Please try again later.' });
   }
 });
-
 
 asgmt.get('/assignment/download/:classId/:asgmtId/:fileId', mw.checkClassAsgmtUserIntegrity, async function(req, res) {
   try {
@@ -412,7 +402,6 @@ asgmt.post('/assignment/upload/:classId/:asgmtId', upload.array("files", 3), asy
   }
 });
 
-// mw checking time to see if submissions are allowed
 asgmt.post('/assignment/submission/:classId/:asgmtId', mw.checkUserTierZero, mw.checkClassAsgmtUserIntegrity, mw.acceptSubmission, upload.single("file"), async (req, res, next) => {
   try {
     const file = req.file;

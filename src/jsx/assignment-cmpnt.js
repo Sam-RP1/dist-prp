@@ -29,22 +29,22 @@ async function getAssignmentContents() {
   if (asgmtData[0].fileThree !== null) {
     attachments = (
       <div>
-      <form method="GET" action={"/api/assignment/download/" + asgmtData[0].fileOne}><button type="submit" className="download-btn transition-01">File 1: {asgmtData[0].fileOneName}</button></form>
-      <form method="GET" action={"/api/assignment/download/" + asgmtData[0].fileTwo}><button type="submit" className="download-btn transition-01">File 2: {asgmtData[0].fileTwoName}</button></form>
-      <form method="GET" action={"/api/assignment/download/" + asgmtData[0].fileThree}><button type="submit" className="download-btn transition-01">File 3: {asgmtData[0].fileThreeName}</button></form>
+      <form method="GET" action={"/api/assignment/download/" + asgmtData[0].fileOne}><button type="submit" className="download-btn transition-01">File 1: {asgmtData[0].fileOne.split('\\')}</button></form>
+      <form method="GET" action={"/api/assignment/download/" + asgmtData[0].fileTwo}><button type="submit" className="download-btn transition-01">File 2: {asgmtData[0].fileTwo.split('\\')}</button></form>
+      <form method="GET" action={"/api/assignment/download/" + asgmtData[0].fileThree}><button type="submit" className="download-btn transition-01">File 3: {asgmtData[0].fileThree.split('\\')}</button></form>
       </div>
     );
   } else if (asgmtData[0].fileTwo !== null) {
     attachments = (
       <div>
-      <form method="GET" action={"/api/assignment/download/" + asgmtData[0].fileOne}><button type="submit" className="download-btn transition-01">File 1: {asgmtData[0].fileOneName}</button></form>
-      <form method="GET" action={"/api/assignment/download/" + asgmtData[0].fileTwo}><button type="submit" className="download-btn transition-01">File 2: {asgmtData[0].fileTwoName}</button></form>
+      <form method="GET" action={"/api/assignment/download/" + asgmtData[0].fileOne}><button type="submit" className="download-btn transition-01">File 1: {asgmtData[0].fileOne.split('\\')}</button></form>
+      <form method="GET" action={"/api/assignment/download/" + asgmtData[0].fileTwo}><button type="submit" className="download-btn transition-01">File 2: {asgmtData[0].fileTwo.split('\\')}</button></form>
       </div>
     );
   } else if (asgmtData[0].fileOne !== null) {
     attachments = (
       <div>
-      <form method="GET" action={"/api/assignment/download/" + asgmtData[0].fileOne}><button type="submit" className="download-btn transition-01">File 1: {asgmtData[0].fileOneName}</button></form>
+      <form method="GET" action={"/api/assignment/download/" + asgmtData[0].fileOne}><button type="submit" className="download-btn transition-01">File 1: {asgmtData[0].fileOne.split('\\')}</button></form>
       </div>
     );
   } else {
@@ -73,7 +73,7 @@ async function getAssignmentContents() {
       cache: 'default'
     })
     const resultsData = await results.json();
-    console.log(resultsData)
+
     const content = <AsgmtContentGenerator tier={uTier} title={asgmtData[0].title} description={asgmtData[0].description} workDueDate={asgmtData[0].dueDateSubmissions}
     reviewsDueDate={asgmtData[0].dueDateReviews} numReviews={asgmtData[0].numReviews} attachments={attachments}
     res1={asgmtData[0].resourceOne} res2={asgmtData[0].resourceTwo} res3={asgmtData[0].resourceThree} deadlineCounter={"placeholder"}
@@ -276,14 +276,10 @@ class ReviewingContainer extends React.Component {
     await this.setState({ data })
   }
 
-  // only save changes make a comparison feature
-  // set to run every x seconds or make dupe function with not msg notification
   async saveHandler(event) {
     event.preventDefault();
-    //const result = await this.validate(this.state); err check
-    //if (result === true) {
-      const urlParams = new URLSearchParams(window.location.search);
-      const response = await fetch('/api/assignment/review/save', {
+    const urlParams = new URLSearchParams(window.location.search);
+    const response = await fetch('/api/assignment/review/save/' + urlParams.get('classId') + '/' + urlParams.get('asgmtId'), {
         method: 'PUT',
         headers: { 'Content-Type' : 'application/json' },
         body: JSON.stringify({
@@ -295,19 +291,14 @@ class ReviewingContainer extends React.Component {
           data: this.state.data
         })
       });
-      const data = await response.json();
-      renderMessage(data)
-    //}
+    const data = await response.json();
+    renderMessage(data)
   }
 
-  // catch error for blank or missing inputs on submission but not save
-  // add checks to check for missing stuff
   async submitHandler(event) {
     event.preventDefault();
-    //const result = await this.validate(this.state); err check
-    //if (result === true) {
-      const urlParams = new URLSearchParams(window.location.search);
-      const response = await fetch('/api/assignment/review/submit', {
+    const urlParams = new URLSearchParams(window.location.search);
+    const response = await fetch('/api/assignment/review/submit/' + urlParams.get('classId') + '/' + urlParams.get('asgmtId'), {
         method: 'PUT',
         headers: { 'Content-Type' : 'application/json' },
         body: JSON.stringify({
@@ -319,19 +310,19 @@ class ReviewingContainer extends React.Component {
           data: this.state.data
         })
       });
-      const data = await response.json();
-      renderMessage(data)
-      if (data.status === 'success') {
+    const data = await response.json();
+    renderMessage(data)
+    if (data.status === 'success') {
         ReactDOM.unmountComponentAtNode(document.getElementById('page-content'));
-        // ReactDOM.unmountComponentAtNode(document.getElementById('review-criteria-container'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('review-criteria-container'));
         await getAssignmentContents();
         if (!document.getElementById('reviewpeers-btn')) {
           document.getElementById('metareview-btn').click();
         } else {
           document.getElementById('reviewpeers-btn').click();
         }
+        document.getElementById('review-item').src = ' ';
       }
-    //}
   };
 
   render () {
