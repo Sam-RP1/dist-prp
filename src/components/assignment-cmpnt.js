@@ -29,19 +29,19 @@ async function getAssignmentContents() {
     }, React.createElement("button", {
       type: "submit",
       className: "download-btn transition-01"
-    }, "File 1: ", asgmtData[0].fileOne.split('\\'))), React.createElement("form", {
+    }, "File 1: ", asgmtData[0].fileOne.split('/'))), React.createElement("form", {
       method: "GET",
       action: "/api/assignment/download/" + asgmtData[0].fileTwo
     }, React.createElement("button", {
       type: "submit",
       className: "download-btn transition-01"
-    }, "File 2: ", asgmtData[0].fileTwo.split('\\'))), React.createElement("form", {
+    }, "File 2: ", asgmtData[0].fileTwo.split('/'))), React.createElement("form", {
       method: "GET",
       action: "/api/assignment/download/" + asgmtData[0].fileThree
     }, React.createElement("button", {
       type: "submit",
       className: "download-btn transition-01"
-    }, "File 3: ", asgmtData[0].fileThree.split('\\'))));
+    }, "File 3: ", asgmtData[0].fileThree.split('/'))));
   } else if (asgmtData[0].fileTwo !== null) {
     attachments = React.createElement("div", null, React.createElement("form", {
       method: "GET",
@@ -49,13 +49,13 @@ async function getAssignmentContents() {
     }, React.createElement("button", {
       type: "submit",
       className: "download-btn transition-01"
-    }, "File 1: ", asgmtData[0].fileOne.split('\\'))), React.createElement("form", {
+    }, "File 1: ", asgmtData[0].fileOne.split('/'))), React.createElement("form", {
       method: "GET",
       action: "/api/assignment/download/" + asgmtData[0].fileTwo
     }, React.createElement("button", {
       type: "submit",
       className: "download-btn transition-01"
-    }, "File 2: ", asgmtData[0].fileTwo.split('\\'))));
+    }, "File 2: ", asgmtData[0].fileTwo.split('/'))));
   } else if (asgmtData[0].fileOne !== null) {
     attachments = React.createElement("div", null, React.createElement("form", {
       method: "GET",
@@ -63,7 +63,7 @@ async function getAssignmentContents() {
     }, React.createElement("button", {
       type: "submit",
       className: "download-btn transition-01"
-    }, "File 1: ", asgmtData[0].fileOne.split('\\'))));
+    }, "File 1: ", asgmtData[0].fileOne.split('/'))));
   } else {
     attachments = "No files, please contact the teacher of this class.";
   }

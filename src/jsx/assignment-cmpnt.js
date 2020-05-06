@@ -29,22 +29,22 @@ async function getAssignmentContents() {
   if (asgmtData[0].fileThree !== null) {
     attachments = (
       <div>
-      <form method="GET" action={"/api/assignment/download/" + asgmtData[0].fileOne}><button type="submit" className="download-btn transition-01">File 1: {asgmtData[0].fileOne.split('\\')}</button></form>
-      <form method="GET" action={"/api/assignment/download/" + asgmtData[0].fileTwo}><button type="submit" className="download-btn transition-01">File 2: {asgmtData[0].fileTwo.split('\\')}</button></form>
-      <form method="GET" action={"/api/assignment/download/" + asgmtData[0].fileThree}><button type="submit" className="download-btn transition-01">File 3: {asgmtData[0].fileThree.split('\\')}</button></form>
+      <form method="GET" action={"/api/assignment/download/" + asgmtData[0].fileOne}><button type="submit" className="download-btn transition-01">File 1: {asgmtData[0].fileOne.split('/')}</button></form>
+      <form method="GET" action={"/api/assignment/download/" + asgmtData[0].fileTwo}><button type="submit" className="download-btn transition-01">File 2: {asgmtData[0].fileTwo.split('/')}</button></form>
+      <form method="GET" action={"/api/assignment/download/" + asgmtData[0].fileThree}><button type="submit" className="download-btn transition-01">File 3: {asgmtData[0].fileThree.split('/')}</button></form>
       </div>
     );
   } else if (asgmtData[0].fileTwo !== null) {
     attachments = (
       <div>
-      <form method="GET" action={"/api/assignment/download/" + asgmtData[0].fileOne}><button type="submit" className="download-btn transition-01">File 1: {asgmtData[0].fileOne.split('\\')}</button></form>
-      <form method="GET" action={"/api/assignment/download/" + asgmtData[0].fileTwo}><button type="submit" className="download-btn transition-01">File 2: {asgmtData[0].fileTwo.split('\\')}</button></form>
+      <form method="GET" action={"/api/assignment/download/" + asgmtData[0].fileOne}><button type="submit" className="download-btn transition-01">File 1: {asgmtData[0].fileOne.split('/')}</button></form>
+      <form method="GET" action={"/api/assignment/download/" + asgmtData[0].fileTwo}><button type="submit" className="download-btn transition-01">File 2: {asgmtData[0].fileTwo.split('/')}</button></form>
       </div>
     );
   } else if (asgmtData[0].fileOne !== null) {
     attachments = (
       <div>
-      <form method="GET" action={"/api/assignment/download/" + asgmtData[0].fileOne}><button type="submit" className="download-btn transition-01">File 1: {asgmtData[0].fileOne.split('\\')}</button></form>
+      <form method="GET" action={"/api/assignment/download/" + asgmtData[0].fileOne}><button type="submit" className="download-btn transition-01">File 1: {asgmtData[0].fileOne.split('/')}</button></form>
       </div>
     );
   } else {
