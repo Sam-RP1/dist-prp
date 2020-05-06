@@ -21,6 +21,9 @@ UserRouter.route('/tier')
 UserRouter.route('/classes')
   .get(require('./user'))
 
+UserRouter.route('/manual/view')
+  .get(require('./user'))
+
 UserRouter.route('/cookie/data')
   .put(require('./user'))
 

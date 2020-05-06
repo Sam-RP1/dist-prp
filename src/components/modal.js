@@ -23,6 +23,20 @@ async function renderInfoModal() {
   ReactDOM.render(modal, document.getElementById('modal-container'));
 }
 
+;
+
+async function renderUserManual() {
+  const request = "/api/user/manual/view";
+  ReactDOM.unmountComponentAtNode(document.getElementById('modal-container'));
+  const modal = React.createElement(ModalContainer, {
+    modal: React.createElement(ManualModal, {
+      URI: request
+    })
+  });
+  ReactDOM.render(modal, document.getElementById('modal-container'));
+  openModal();
+}
+
 ; //----- Dashboard modals
 
 async function renderCreateClassModal() {
@@ -900,14 +914,17 @@ function InfoModal(props) {
     className: "collapsible-btn transition-01"
   }, "Peer Review Help Guide"), React.createElement("div", {
     className: "collapsible-txt"
-  }, React.createElement("p", null, "Lorem ipsum example text here")), React.createElement("button", {
+  }, React.createElement("p", null, "There are many ways to improve the feedback you provide a peer when you review their work. Below are five quick and easy points that you can use to improve the peer reviews you do."), React.createElement("p", null, "1. Make sure you fully understand the marking criteria ", React.createElement("strong", null, "before"), " you begin peer reviewing work. If you do not understand what you are meant to be looking for or critiquing in the work you are reviewing then you are not able to provide accurate, reliable and trust worthy feedback. If you need to, look for some support that can help you better understand the marking criteria."), React.createElement("p", null, "2. Always thoroughly read the work you are reviewing. Be critical and do not ignore the details of the work you are reviewing, be sure to not skim read over parts as these may contain crucial errors or mistakes that the author of the work needs informing about from your peer review feedback. If necessary take notes of the work as you are reading through it and note down the major, moderate and minor errors and where they are located."), React.createElement("p", null, "3. Always be specific in your feedback. When typing out the feedback do not be open ended, the more specific you can be about a problem the easier the author can locate it and start ammending it."), React.createElement("p", null, "4. Always explain the feedback you give. Do not just say what you think you have identified in thier work is an error or a problem or could be improved. Explain why it is error using evidence to backup the point you are making, explain why it is a problem using examples, explain why it could be improved and how it could be improved. The more scientific and concise the explanations you provide in your feedback the easier it is for the works author to improve their work."), React.createElement("p", null, "5. Try to provide feedback that is easy to understand when peer reviewing work. The less complex and the more concise the feedback you give the easier it will be for the works author to understand.")), React.createElement("button", {
     id: "coll-2",
     onClick: () => toggleCollapsible("coll-2"),
     type: "button",
     className: "collapsible-btn transition-01"
   }, "Website Help Guide"), React.createElement("div", {
     className: "collapsible-txt"
-  }, React.createElement("p", null, "Lorem ipsum example text here. Hi there my dude.")))));
+  }, React.createElement("p", null, "For help using the Peer Review Platform click the link below to open the user manual..."), React.createElement("a", {
+    onClick: () => renderUserManual(),
+    className: "cmpnt-btn-l asgmt-cmpnt-btn-l addon-m-10w"
+  }, React.createElement("p", null, "View Manual"))))));
 }
 
 ;
@@ -986,6 +1003,18 @@ function SubmissionModal(props) {
     className: "modal-title"
   }, props.submitor, "'s submission"), React.createElement("iframe", {
     src: props.submissionURI,
+    frameborder: "0"
+  })));
+}
+
+function ManualModal(props) {
+  return React.createElement(React.Fragment, null, React.createElement("div", {
+    className: "modal submission padding-default"
+  }, React.createElement(ModalBackBtn, null), React.createElement("h2", {
+    id: "modal-title",
+    className: "modal-title"
+  }, "Peer Review Portal User Manual"), React.createElement("iframe", {
+    src: props.URI,
     frameborder: "0"
   })));
 }

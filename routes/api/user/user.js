@@ -114,6 +114,15 @@ user.get('/classes', async function(req, res) {
   }
 });
 
+asgmt.get('/manual/view', async function(req, res) {
+  try {
+    res.sendFile(fileId, { root: path.join('./appdata/User-Manual-PRP.pdf', ) })
+  } catch(e) {
+    console.log(e);
+    res.status(500).json({ status: 'fail', msg: 'We are having trouble getting this file at the moment. Please try again later.' });
+  }
+});
+
 user.put('/cookie/data', async function(req, res) {
   try {
     const userId = req.session.userId;
