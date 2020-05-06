@@ -116,7 +116,7 @@ user.get('/classes', async function(req, res) {
 
 user.get('/manual/view', async function(req, res) {
   try {
-    res.sendFile(fileId, { root: path.join('./appdata/User-Manual-PRP.pdf', ) })
+    res.sendFile("Manual", { root: './appdata/User-Manual-PRP.pdf' })
   } catch(e) {
     console.log(e);
     res.status(500).json({ status: 'fail', msg: 'We are having trouble getting this file at the moment. Please try again later.' });
